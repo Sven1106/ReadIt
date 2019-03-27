@@ -1,0 +1,43 @@
+{
+  "name": "Readit",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "win": "electron-builder --win",
+    "make-cert": "electron-builder create-self-signed-cert -p sven1106"
+  },
+  "author": "sven1106",
+  "build": {
+    "appId": "com.sven1106.readit",
+    "directories": {
+      "buildResources": "."
+    },
+    "win": {
+      "certificateFile": "private/sven1106.pfx",
+      "verifyUpdateCodeSignature": false,
+      "publisherName": "sven1106",
+      "target": "nsis"
+    },
+    "nsis": {
+      "include": "build/installer.nsh",
+      "oneClick": false,
+      "perMachine": true,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "license": "LICENSE.md",
+      "runAfterFinish": false
+    }
+  },
+  "devDependencies": {
+    "electron": "^4.1.1",
+    "electron-builder": "^20.39.0"
+  },
+  "dependencies": {
+    "bulma": "^0.3.1",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "query-string": "^6.4.0"
+  }
+}
