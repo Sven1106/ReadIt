@@ -2,6 +2,7 @@
 const { app, ipcMain } = require('electron')
 const mainWindow = require('./mainWindow')
 const readItem = require('./readItem')
+const updater = require('./updater')
 
 //Listen for new read item
 ipcMain.on('new-item', (e, itemUrl) => {
@@ -10,7 +11,7 @@ ipcMain.on('new-item', (e, itemUrl) => {
   // Get read item width readItem Module
   readItem(itemUrl, (item) => {
     // Send to renderer
-      e.sender.send('new-item-success', item)
+    e.sender.send('new-item-success', item)
   });
 })
 
@@ -20,7 +21,15 @@ app.disableHardwareAcceleration()
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', mainWindow.createWindow)
+app.on('ready', () => {
+  // Create main window
+  mainWindow.createWindow()
+
+  // Check for update after x seconds
+  setTimeout(() => {
+    updater.check()
+  }, 2000);
+})
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
   // On macOS it is common for applications and their menu bar
