@@ -1,6 +1,6 @@
 {
   "name": "Readit",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
@@ -22,15 +22,6 @@
       "certificateFile": "private/sven1106.pfx",
       "verifyUpdateCodeSignature": false,
       "publisherName": "sven1106",
-      "target": "nsis"
-    },
-    "nsis": {
-      "oneClick": false,
-      "perMachine": false,
-      "allowElevation": true,
-      "allowToChangeInstallationDirectory": false,
-      "license": "LICENSE.md",
-      "runAfterFinish": false,
       "artifactName": "${name}-${version}-${os}.${ext}"
     }
   },

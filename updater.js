@@ -57,12 +57,13 @@ exports.check = () => {
 
       // Listen for preogress request from progressWin
       ipcMain.on('download-progress-request', (e) => {
+          
         e.returnValue = downloadProgress
       })
 
       // Track download progress on autoUpdater
       autoUpdater.on('download-progress', (d) => {
-        downloadProgress = d.percent
+          downloadProgress = d.percent
       })
 
       // Listen for completed update download
